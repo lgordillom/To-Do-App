@@ -1,4 +1,4 @@
-ode {  
+node {  
    stage('Build') { 
        checkout scm
        def customImage = docker.build("lgordillom/to-do-app:$env.BUILD_ID")
