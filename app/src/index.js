@@ -8,6 +8,7 @@ const deleteItem = require('./routes/deleteItem');
 // Comment
 // prueba
 // otra 
+// s
 app.use(express.json());
 app.use(express.static(__dirname + '/static'));
 
