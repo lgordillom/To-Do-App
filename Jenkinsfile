@@ -1,6 +1,5 @@
 node {
     stage('Build') {
-        checkout scm
         def myImage = docker.build("lgordillom/to-do-app:latest")
         docker.withRegistry('', 'DockerHub') {
             myImage.push("latest")
