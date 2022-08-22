@@ -6,6 +6,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
+                sh 'git config --global --unset http.proxy'
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/lgordillom/To-Do-App.git']]])
             }
         }
