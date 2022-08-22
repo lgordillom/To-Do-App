@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/lgordillom/To-Do-App.git']]])
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'sudo docker build -t lgordillom/to-do-app:latest ./app'            
+            }
+        }
+        stage('Login') {
+            steps {
+                sh 'echo dckr_pat_sOTmyuhgjXUvSn71rNhRWn5aQc0 |sudo docker login -u lgordillom --password-stdin'           
+            }
+        }
+        stage('Push') {
+            steps {
+                sh 'sudo docker push lgordillom/to-do-app:latest'          
+            }
+        }
+    }
+}
