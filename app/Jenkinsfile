@@ -1,15 +1,20 @@
-node {  
-   stage('Build') { 
-       checkout scm
-       def customImage = docker.build("lgordillom/to-do-app:$env.BUILD_ID")
-       docker.withRegistry('', 'DockerHub') {
-           customImage.push("$env.BUILD_ID")
-       }
-   }
-   stage('Test') { 
-       // 
-   }
-   stage('Deploy') { 
-       
-   }
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building..'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
+    }
 }
